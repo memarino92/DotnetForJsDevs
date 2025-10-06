@@ -10,24 +10,40 @@ This whole repo should be clonable to follow along - this is the talk. One big m
 
 - Why .NET?
   - Jobs
+    - Supply vs Demand
+    - People are always hiring for C#. So what? They're always hiring for JS too. Even though the demand for dotnet may be smaller than that for JS, the community of developers is smaller too (although smallER is relative). The ratio of qualified devs for a given position favors .NET imo.
   - Performance
+    - C# (and .NET in general) compares favorably to interpreted languages like JavaScript and Python. JS will nev er be able to keep up to true multi-threaded languages like C# (and Rust, Go, etc) for tasks that benefit from parallelization. Even in single-threaded use cases C# will generally perform better by nature of the benefits that compilation provides.
   - Just trying new things out
+    - Learning new languages can only make you a better developer. Learning different approaches and methodologies can unlock better understanding of fundamental concepts of programming and computer science, even if you never seek to be employed with them.
   - Maybe the most controversial of all: C# is good actually
+    - C# is a strongly typed language with outstanding tooling and a mature ecosystem that you can be very productive in very quickly. It's has been a breeding ground for new ideas (async/await? using?) and consistently releases updates adding new features to the language and sdks (more on that later).
 - What _is_ .NET?
   - .NET runtime in general
-  - different languages (C#, F#, VB)
+    - .NET is the "runtime", but also it's the "ecosystem". .NET CLR is the virtual machine that translates the compiled code to machine code.
+  - Different languages (C#, F#, VB)
+    - As long as it compiles to IL, different languages can be used in the same project
+    - C# - Object oriented, staticaly typed, general purpose. C-like syntax
+    - F# - Functional-first, statically typed (Hindley-Millner) general purpose lang.
+    - VB - I hope you don't have to write VB 🥲
   - .NET Framework vs .NET Core vs .NET
-  - Unity uses C# language, not really .NET. Mono runtime.
+    - .NET Framework came first. Windows-only, closed source
+    - .NET Core initial release 2015. Open source, cross-platform. Dropped "Core" starting with .NET 5, now it's just ".NET"
+      - LTS vs STS
+        - New version released every year, .NET 10 releases Nov 2025
+        - LTS even-numbered versions. Support for 3 years - every 2 years you have 1 year to upgrade.
+        - STS odd-numbered versions. Support for 2 years, every 1 year you have 1 year to upgrade.
+  - Unity uses C# language and the Mono runtime - based on Framework, but cross-platform. Bundles runtime when building, unless using IL2CPP, which translates the compiled IL into C++ code, and then compiles the resulting c++.
   - but in general, when people say .NET, they mean C# (just like people say JS but assume you know TS (for example I will use them almost interchangeably throughout), and F# people wouldn't pass up an opportunity to say they write F#)(how can you tell somebody's a functional programmer? Don't worry, they'll tell you.)
   - open source language, open source compiler. not all open source tooling, and some people are mad about it.
 - How does it work?
-  - Compiled to IL
-  - Interpreted at runtime by CLR
-  - Single file w/ runtime
+  - Compiled to cpu-agnostic IL
+  - IL JIT compiled to machine-specific instructions at runtime by CLR
+  - Can publish single file executable w/ packaged runtime
   - AoT introduced in .NET 6
-    (remember jamstack and serverless everything? show Microsoft graph from AoT doc page on resource comparison)
+    - remember jamstack and serverless everything? show Microsoft graph from AoT doc page on resource comparison
 - Language stuff
-  - Anders Heilsberg(sp?) designed both TS and C#
+  - Anders Hejlsberg designed C#, and TS, and TurboPascal, and Delphi
   - Syntax C-like, so should be familiar to JS devs
   - Things that basically look the same in both languages
     - declaring variables
@@ -35,7 +51,9 @@ This whole repo should be clonable to follow along - this is the talk. One big m
     - explicit typing
     - lambdas
     - spread operator and overwriting properties (vs a with b for c# records)
-  - Don Syme F#, ML family of languages - very different feel - grab quote from F#FFAP site about how changing a language for the newbies confortablility of reading vs experienced programmers productivity is a bad trade
+  - Don Syme designed F#
+    - From ML family of languages, can look a bit alien if you're used to C-like syntax - no curly braces, no commas.
+      - “Optimising your notation to not confuse people in the first 10 minutes of seeing it but to hinder readability ever after is a really bad mistake.” (David MacIver, via a post about Scala syntax).
   - Nominally typed vs algebraic types, C#/TS/F#
   - Imports in TS vs using namespaces in C#
   - Other ways to use `using` (scope block, statement)
@@ -53,6 +71,16 @@ This whole repo should be clonable to follow along - this is the talk. One big m
   - Monorepos relatively new thing in TS land comparatively
   - In addition to references to other projects, project files contain packages from a registry (Nuget vs npm)
   - Create slns and projects from templates, link projects together, add packages, restore packages, build, run, watch (hot reload), publish, run tests are things I do daily using cli
+  - Visual Studio vs VS Code vs Others
+    - Visual studio has most polished experience
+      - I hate it
+      - Not intuitive - different key bindings than most other programs, windows don't behave as you would expect, run your program? windows start shuffling around, hides files from you?!?! Whyyy would I need to explicitly add files if they are in the directory
+      - Too much "magic"
+    - VS Code catching up
+      - C# Dev Kit extension big step up
+      - get familiar with dotnet cli
+    - Rider (JetBrains)
+      - Smaller, devoted userbase (like most JetBrains products)
 - Web development
   - ASP.NET SDK, brief history (it's been around a long time)
   - Controllers in repsonse to Ruby on Rails and that stuck around a long time. MVC pattern very popular.
